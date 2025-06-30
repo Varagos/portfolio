@@ -1,0 +1,29 @@
+services:
+  portfolio-app:
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_VARIABLE: ${ENV_VARIABLE}
+        NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    restart: unless-stopped  # Better than 'always'
+    security_opt:
+      - no-new-privileges:true
+    read_only: true  # Make container filesystem read-only
+    tmpfs:
+      - /tmp
+      - /app/.next/cache  # Next.js cache directory
+    user: "1000:1000"  # Run as non-root (if Dockerfile supports it)
+    ports:
+      - 3001:3000
+    networks:
+      - varagos-net
+
+  # Add more containers below (nginx, postgres, etc.)
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  varagos-net:
+    external: true
