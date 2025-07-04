@@ -1,3 +1,5 @@
+import { SplittingText } from "@/components/animate-ui/text/splitting";
+
 /* app/page.tsx */
 export default function Home() {
   return (
@@ -18,9 +20,12 @@ export default function Home() {
       <section className="flex-grow flex flex-col justify-center">
         <p className="text-[var(--color-accent)] text-sm mb-2">Hi, I’m</p>
         <h1 className="text-6xl font-bold text-[var(--color-heading)]">Mark.</h1>
-        <h2 className="text-4xl font-semibold text-[var(--color-muted)] mt-2">
+        <SplittingText type="chars"
+          className="text-4xl font-semibold text-[var(--color-muted)] mt-2"
+          text="I’m a software engineer focused on building scalable backend systems, CLI tools, and full-stack experiences." />
+        {/* <h2 className="text-4xl font-semibold text-[var(--color-muted)] mt-2">
           I’m a software engineer focused on building scalable backend systems, CLI tools, and full-stack experiences.
-        </h2>
+        </h2> */}
 
         <div className="mt-8 space-x-6 text-[var(--color-accent)] text-lg">
           <a href="/resume.pdf" className="hover:underline">→ Resume</a>
